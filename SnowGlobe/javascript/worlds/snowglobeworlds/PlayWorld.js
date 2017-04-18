@@ -1,4 +1,4 @@
-/* global World GridMask TiledImage Entity GameSprite Marcus */
+/* global World GridMask TiledImage Entity GameSprite Marcus Knight */
 class PlayWorld extends World {
     constructor(game, lvl, _sx, _sy) {
         super(game);
@@ -26,7 +26,7 @@ class PlayWorld extends World {
         this.addEntity(new Entity(0, 0, fr));
         for (let i = 0; i < zone.layers[3].objects.length; i++) {
             if (zone.layers[3].objects[i].type === "knight") {
-                
+                this.addEntity(new Knight(zone.layers[3].objects[i].x, zone.layers[3].objects[i].y, new GameSprite(this.requestImage("knight"), 32, 32)));
             }
         }
         this.addEntity(new Marcus(_sx, _sy, new GameSprite(this.requestImage("marcus"), 32, 32)));

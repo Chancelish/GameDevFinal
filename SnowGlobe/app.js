@@ -54,6 +54,7 @@ class MyGame {
         this.gameLoop = (time) => {
             if (this.running) {
                 if (!document.hasFocus()) {
+                    previous = time;
                     requestAnimationFrame((this.gameLoop));
                     return;
                 }
@@ -134,6 +135,18 @@ class MyGame {
         this.mouseManager.postUpdate();
     }
     render() {
+        let h = window.innerHeight - 16;
+        if (this.canvas.height != h) {
+            MyGame.SCALE = h/MyGame.HEIGHT;
+            this.canvas.height = h;
+            this.canvas.width = MyGame.WIDTH*MyGame.SCALE;
+            this.g.setScale(MyGame.SCALE);
+            let gfx = canvas.getContext("2d");
+            gfx.msImageSmoothingEnabled = false;
+            gfx.webkitImageSmoothingEnabled = false;
+            gfx.oImageSmoothingEnabled = false;
+            gfx.imageSmoothingEnabled = false;
+        }
         this.g.clear();
         this.g.rectangle(0, 0, MyGame.WIDTH, MyGame.HEIGHT, this.colour);
         if (this.world) {

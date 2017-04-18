@@ -6,10 +6,13 @@ class Graphics {
         let height = _height;
         let gfx = canvas.getContext("2d");
         gfx.msImageSmoothingEnabled = false;
-        gfx.imageSmoothingEnagled = false;
         gfx.webkitImageSmoothingEnabled = false;
         gfx.mozImageSmoothingEnabled = false;
+        gfx.imageSmoothingEnabled = false;
         let scale = _scale;
+        this.setScale = (_s) => {
+            scale = _s;
+        }
         this.clear = () => {
             gfx.clearRect(0, 0, width * scale, height * scale);
         }
